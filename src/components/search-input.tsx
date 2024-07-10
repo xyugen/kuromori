@@ -65,7 +65,7 @@ const SearchInput: React.FC = () => {
         onChange={handleChange}
       />
       {isBoxVisible && searchResult && (
-        <div ref={searchBoxRef} className={"absolute w-full"}>
+        <div ref={searchBoxRef} className={"absolute w-full z-50"}>
           <SearchResultModal searchResult={searchResult} />
         </div>
       )}
