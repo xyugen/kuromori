@@ -19,6 +19,12 @@ const MobileSidebar = () => {
             <Title />
           </SheetTitle>
         </SheetHeader>
+        <div className='m-4'>
+          <nav className='flex flex-col gap-2'>
+            <Link href={'/'} className='hover:underline underline-offset-2'>Home</Link>
+            <Link href={'/catalog'} className='hover:underline underline-offset-2'>Catalog</Link>
+          </nav>
+        </div>
       </SheetContent>
     </Sheet>
   )
