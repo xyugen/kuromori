@@ -54,7 +54,7 @@ const SearchInput: React.FC = () => {
   }, []);
 
   return (
-    <form className="relative mx-8 md:w-full" onSubmit={handleSubmit}>
+    <form className="relative mx-8 flex-grow" onSubmit={handleSubmit}>
       <Search className="absolute top-1/2 left-3 -translate-y-1/2 text-foreground/70" size={20} />
       <Input
         id="search"
