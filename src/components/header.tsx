@@ -1,12 +1,6 @@
 import React from 'react'
-import logo from '@/images/kuromori-logo.png';
-import Image from 'next/image';
 import { ModeToggle } from './theme-toggle';
-import Link from 'next/link';
 import SearchInput from './search-input';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
-import { Button } from './ui/button';
-import { Menu } from 'lucide-react';
 import MobileSidebar from './mobile-sidebar';
 import Title from './title';
 
