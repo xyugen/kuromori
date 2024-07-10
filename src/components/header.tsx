@@ -13,7 +13,7 @@ const Header = () => {
         <Title className='w-24' />
         <Nav />
       </div>
-      <SearchInput />
+      <SearchInput  />
       <ModeToggle />
     </header>
   )

@@ -1,24 +1,27 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { Input } from './ui/input'
 import { Search } from 'lucide-react'
 import axios from 'axios'
+import { AnimeSearchResult } from '@/interface/AnimeSearchResult'
 
 const SearchInput = () => {
   const [search, setSearch] = useState('')
+  const [searchResult, setSearchResult] = useState<AnimeSearchResult>()
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
-
-    // const searchResults = await axios.get(`/api/anime/${search}`);
+    
+    const searchResults = await axios.get(`/api/anime/${search}`);
+    setSearchResult(searchResults.data)
   }
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     const searchResults = await axios.get(`/api/anime/${search}`);
-    console.log(searchResults.data.results)
+    setSearchResult(searchResults.data)
   }
 
   return (
