@@ -77,7 +77,10 @@ const config = {
       }
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@vidstack/react/tailwind.cjs"),
+  ],
 } satisfies Config
 
 export default config
