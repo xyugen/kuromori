@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ANIME, IAnimeInfo, ITitle, META } from '@consumet/extensions'
 import { Star } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const Page = async ({ params }: { params: { id: string }}) => {
@@ -13,7 +14,7 @@ const Page = async ({ params }: { params: { id: string }}) => {
   const anime = await gogoanime.fetchAnimeInfo(params.id);
   const meta = await anilist.search(params.id);
   const animeInfo: IAnimeInfo = await anilist.fetchAnimeInfo(meta.results[0].id);
-
+  
   if (!animeInfo) {
     return <div>Anime not found</div>
   }
@@ -35,10 +36,10 @@ const Page = async ({ params }: { params: { id: string }}) => {
 
             {/* Content */}
             <div className='flex flex-col justify-center gap-3'>
-              <p>
+              <div>
                 <h1 className='text-2xl md:text-3xl font-bold'>{animeInfo.title.english}</h1>
                 <span className='text-foreground/70 text-sm'>{animeInfo.title.romaji}</span>
-              </p>
+              </div>
               <p className='text-sm md:text-base text-foreground/70'>{animeInfo.description}</p>
               <div className='flex items-center gap-2'>
                 <Star className='h-4 w-4 text-accent' />
@@ -124,9 +125,20 @@ const Page = async ({ params }: { params: { id: string }}) => {
             </TabsContent>
             <TabsContent value='episodes'>
               <h2 className='text-xl font-bold'>Episodes</h2>
-              <div>
+              <div className='flex flex-wrap gap-7'>
                 {animeInfo.episodes?.map((episode, index) => (
-                  <p key={episode.id} className='text-foreground/70'>{episode.image} - {episode.title}</p>
+                  <Link href={`/anime/${params.id}/episode/${index + 1}`} key={index}>
+                    <Image
+                      src={episode.image!}
+                      alt={episode.title!}
+                      width={150}
+                      height={150}
+                      className='rounded-md h-40 md:h-fit object-cover'
+                      draggable='false'
+                    />
+                    <h3 className='text-base font-medium'>{episode.title}</h3>
+                    <p className='text-foreground/70'>{episode.releaseDate}</p>
+                  </Link>
                 ))}
               </div>
             </TabsContent>
