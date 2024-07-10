@@ -53,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(raleway.className)}>
+      <body className={cn(raleway.className, "antialiased")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
