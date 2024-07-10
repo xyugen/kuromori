@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
 import coverImage from "@/images/kuromori-cover.png";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -51,7 +53,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={raleway.className}>{children}</body>
+      <body className={cn(raleway.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          </ThemeProvider>
+      </body>
     </html>
   );
 }
