@@ -3,25 +3,29 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { Input } from './ui/input'
 import { Search } from 'lucide-react'
-import axios from 'axios'
-import { AnimeSearchResult } from '@/interface/AnimeSearchResult'
+import { ANIME, IAnimeResult, ISearch } from '@consumet/extensions'
 
 const SearchInput = () => {
+  const gogoanime = new ANIME.Gogoanime();
   const [search, setSearch] = useState('')
-  const [searchResult, setSearchResult] = useState<AnimeSearchResult>()
+  const [searchResult, setSearchResult] = useState<ISearch<IAnimeResult>>()
+
+  const handleSearch = (query: string) => {
+    gogoanime.search(query)
+      .then(result => setSearchResult(result))
+      .catch(error => console.log(error));
+  }
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
     
-    const searchResults = await axios.get(`/api/anime/${search}`);
-    setSearchResult(searchResults.data)
+    handleSearch(search);
   }
 
   const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const searchResults = await axios.get(`/api/anime/${search}`);
-    setSearchResult(searchResults.data)
+    handleSearch(search);
   }
 
   return (
