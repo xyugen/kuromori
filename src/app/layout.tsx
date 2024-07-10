@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
+import coverImage from "@/images/kuromori-cover.png";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -19,8 +20,7 @@ export const metadata: Metadata = {
     description: "Immerse yourself in the world of anime with our sleek, minimalistic streaming platform featuring a curated selection of top shows.",
     url: "https://kuromori.vercel.app",
     siteName: "Kuromori",
-    // TODO: Add og image
-    images: [],
+    images: [coverImage.src],
     locale: "en-US",
     type: "website",
   },
@@ -29,8 +29,7 @@ export const metadata: Metadata = {
     description: "Immerse yourself in the world of anime with our sleek, minimalistic streaming platform featuring a curated selection of top shows.",
     card: "summary_large_image",
     creator: "@vercel",
-    // TODO: Add twitter image
-    images: [],
+    images: [coverImage.src],
   },
   robots: {
     index: true,
