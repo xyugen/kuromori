@@ -8,7 +8,7 @@ const SearchResultModal = ({ searchResult }: { searchResult: ISearch<IAnimeResul
   const MAX_RESULTS = 6;
 
   return (
-    <div className='bg-background border border-foreground/10 shadow-sm rounded-md p-1'>
+    <div className='bg-background border border-foreground/10 shadow dark:shadow-md rounded-md p-1'>
       <ul className='space-y-2'>
         {
           searchResult.results.slice(0, MAX_RESULTS).map((result, index) => (
