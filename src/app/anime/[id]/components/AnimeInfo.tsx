@@ -5,10 +5,12 @@ import AnimeHeader from './AnimeHeader'
 import AnimeDetails from './AnimeDetails'
 import AnimeDescription from './AnimeDescription'
 import AnimeEpisodes from './AnimeEpisodes'
+import { parseSearch } from '@/lib/utils'
 
 const AnimeInfo = async ({ params }: { params: { id: string }}) => {
   const anilist = new META.Anilist();
-  const meta = await anilist.search(params.id);
+  const searchQuery = parseSearch(params.id);
+  const meta = await anilist.search(searchQuery);
   const animeInfo: IAnimeInfo = await anilist.fetchAnimeInfo(meta.results[0].id);
 
   if (!animeInfo) {
@@ -19,7 +21,6 @@ const AnimeInfo = async ({ params }: { params: { id: string }}) => {
     <main className='p-2 md:p-12 lg:p-24'>
       <div className='flex flex-col gap-14 md:gap-20'>
         <AnimeHeader animeInfo={animeInfo} animeId={params.id} />
-
         <Tabs defaultValue='overview'>
           <TabsList>
             <TabsTrigger value='overview'>Overview</TabsTrigger>
