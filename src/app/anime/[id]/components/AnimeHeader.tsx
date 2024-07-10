@@ -4,6 +4,7 @@ import { Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { IAnimeInfo } from '@consumet/extensions'
+import StartWatchingButton from './StartWatchingButton'
 
 interface AnimeHeaderProps {
   animeInfo: IAnimeInfo
@@ -33,10 +34,8 @@ const AnimeHeader: React.FC<AnimeHeaderProps> = ({ animeInfo, animeId }) => {
           <span className='text-sm'>{animeInfo.rating || 'N/A'}</span>
         </div>
         <div className='flex gap-2 flex-wrap'>
-          <Button variant={'default'} className='w-full sm:w-fit' asChild>
-            <Link href={`/anime/${animeId}/episode/1`}>Start Watching</Link>
-          </Button>
-          <Button variant='outline' className='w-full sm:w-fit' disabled>Add to My List</Button>
+          <StartWatchingButton animeId={animeId} />
+          <Button variant='outline' className='w-full sm:w-36' disabled>Add to My List</Button>
         </div>
       </div>
     </div>
