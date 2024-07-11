@@ -11,12 +11,13 @@ interface AnimeHeaderProps {
 }
 
 const AnimeHeader: React.FC<AnimeHeaderProps> = ({ animeInfo, animeId }: AnimeHeaderProps) => {
+  const animeTitle = typeof animeInfo.title === 'string' ? animeInfo.title : animeInfo.title.english!;
   return (
     <div className='relative'>
       <div className='flex gap-2 md:gap-8 flex-wrap md:flex-nowrap'>
         <Image
           src={animeInfo.image!}
-          alt={animeInfo.title.english || animeInfo.title}
+          alt={animeTitle}
           width={200}
           height={200}
           className='rounded-md h-fit object-cover'
@@ -25,8 +26,8 @@ const AnimeHeader: React.FC<AnimeHeaderProps> = ({ animeInfo, animeId }: AnimeHe
 
         <div className='flex flex-col justify-center gap-3'>
           <div>
-            <h1 className='text-2xl md:text-3xl font-bold'>{animeInfo.title.english || animeInfo.title}</h1>
-            <span className='text-foreground/70 text-sm'>{animeInfo.title.romaji || animeInfo.title}</span>
+            <h1 className='text-2xl md:text-3xl font-bold'>{animeTitle}</h1>
+            <span className='text-foreground/70 text-sm'>{animeTitle}</span>
           </div>
           <p className='text-sm md:text-base text-foreground/70'>{animeInfo.description}</p>
           <div className='flex items-center gap-2'>
