@@ -14,8 +14,8 @@ const AnimeDescription: React.FC<AnimeInfoProps> = ({ animeInfo }) => {
       {animeInfo.trailer &&
         <>
           <h2 className='text-xl font-bold'>Trailer</h2>
-          <div className='w-80'>
-            <MediaPlayer src={`https://www.youtube.com/watch?v=${animeInfo.trailer?.id}`} controls>
+          <div className='w-1/2'>
+            <MediaPlayer className='w-full' src={`https://www.youtube.com/watch?v=${animeInfo.trailer?.id}`} controls>
               <MediaProvider/>
             </MediaPlayer>
           </div>
